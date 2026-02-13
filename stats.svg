@@ -1,6 +1,6 @@
 <svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="descId-kevihq">
   <title id="titleId-kevihq">Estatísticas de GitHub de Kelvin Klein</title>
-  <desc id="descId-kevihq">Cartão de estatísticas estilo RPG para o usuário kevihq. Nível 6 Artificer, com 590 XP total, 59 commits, 0 pull requests e 0 issues.</desc>
+  <desc id="descId-kevihq">Cartão de estatísticas estilo RPG para o usuário kevihq. Nível 6 Artificer, com 595 XP total, 506 commits, 22 pull requests e 0 issues.</desc>
 
   <style>
     /* --- Typography & Base --- */
@@ -74,7 +74,7 @@
       <rect width="160" height="80" class="stat-box" />
       <rect width="160" height="80" class="stat-box-border" />
       <text x="20" y="30" class="text-base text-stat-label">Total XP</text>
-      <text x="20" y="60" class="text-base text-stat-value">590</text>
+      <text x="20" y="60" class="text-base text-stat-value">595</text>
     </g>
 
     <!-- Stat 2: Commits (STR) -->
@@ -82,7 +82,7 @@
       <rect width="160" height="80" class="stat-box" />
       <rect width="160" height="80" class="stat-box-border" />
       <text x="20" y="30" class="text-base text-stat-label">Commits</text>
-      <text x="20" y="60" class="text-base text-stat-value" fill="#79c0ff">59</text>
+      <text x="20" y="60" class="text-base text-stat-value" fill="#79c0ff">506</text>
     </g>
 
     <!-- Stat 3: PRs (DEX) -->
@@ -90,7 +90,7 @@
       <rect width="160" height="80" class="stat-box" />
       <rect width="160" height="80" class="stat-box-border" />
       <text x="20" y="30" class="text-base text-stat-label">Pull Req.</text>
-      <text x="20" y="60" class="text-base text-stat-value" fill="#d2a8ff">0</text>
+      <text x="20" y="60" class="text-base text-stat-value" fill="#d2a8ff">22</text>
     </g>
 
     <!-- Stat 4: Issues (INT) -->
@@ -107,54 +107,54 @@
     <text x="0" y="0" class="text-base text-stat-label" style="font-size: 14px; fill: #ffffff;">Top Masteries</text>
     
     <g transform="translate(0, 20)">
+      <text x="0" y="10" class="text-base text-lang-name">JavaScript</text>
+      <rect x="120" y="2" width="500" height="8" class="progress-bg" />
+      
+      <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
+      <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
+      <rect x="120" y="2" width="262.18193296772756" height="8" fill="#f1e05a" class="progress-bar" />
+      
+      <text x="640" y="10" class="text-base text-lang-percent">52.4%</text>
+    </g>
+    <g transform="translate(0, 48)">
       <text x="0" y="10" class="text-base text-lang-name">TypeScript</text>
       <rect x="120" y="2" width="500" height="8" class="progress-bg" />
       
       <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
       <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
-      <rect x="120" y="2" width="259.2858062025479" height="8" fill="#3178c6" class="progress-bar" />
+      <rect x="120" y="2" width="80.25293939263435" height="8" fill="#3178c6" class="progress-bar" />
       
-      <text x="640" y="10" class="text-base text-lang-percent">51.9%</text>
-    </g>
-    <g transform="translate(0, 48)">
-      <text x="0" y="10" class="text-base text-lang-name">Java</text>
-      <rect x="120" y="2" width="500" height="8" class="progress-bg" />
-      
-      <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
-      <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
-      <rect x="120" y="2" width="67.03513061382063" height="8" fill="#b07219" class="progress-bar" />
-      
-      <text x="640" y="10" class="text-base text-lang-percent">13.4%</text>
+      <text x="640" y="10" class="text-base text-lang-percent">16.1%</text>
     </g>
     <g transform="translate(0, 76)">
-      <text x="0" y="10" class="text-base text-lang-name">Python</text>
+      <text x="0" y="10" class="text-base text-lang-name">Dart</text>
       <rect x="120" y="2" width="500" height="8" class="progress-bg" />
       
       <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
       <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
-      <rect x="120" y="2" width="47.25517951357611" height="8" fill="#3572A5" class="progress-bar" />
+      <rect x="120" y="2" width="69.50387086502619" height="8" fill="#00B4AB" class="progress-bar" />
       
-      <text x="640" y="10" class="text-base text-lang-percent">9.5%</text>
+      <text x="640" y="10" class="text-base text-lang-percent">13.9%</text>
     </g>
     <g transform="translate(0, 104)">
-      <text x="0" y="10" class="text-base text-lang-name">Svelte</text>
+      <text x="0" y="10" class="text-base text-lang-name">HTML</text>
       <rect x="120" y="2" width="500" height="8" class="progress-bg" />
       
       <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
       <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
-      <rect x="120" y="2" width="27.30021876206408" height="8" fill="#ff3e00" class="progress-bar" />
+      <rect x="120" y="2" width="43.67252886593181" height="8" fill="#e34c26" class="progress-bar" />
       
-      <text x="640" y="10" class="text-base text-lang-percent">5.5%</text>
+      <text x="640" y="10" class="text-base text-lang-percent">8.7%</text>
     </g>
     <g transform="translate(0, 132)">
-      <text x="0" y="10" class="text-base text-lang-name">C#</text>
+      <text x="0" y="10" class="text-base text-lang-name">C++</text>
       <rect x="120" y="2" width="500" height="8" class="progress-bg" />
       
       <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
       <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
-      <rect x="120" y="2" width="24.259426071290697" height="8" fill="#178600" class="progress-bar" />
+      <rect x="120" y="2" width="8.499982116314035" height="8" fill="#f34b7d" class="progress-bar" />
       
-      <text x="640" y="10" class="text-base text-lang-percent">4.9%</text>
+      <text x="640" y="10" class="text-base text-lang-percent">1.7%</text>
     </g>
   </g>
 

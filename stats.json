@@ -3,35 +3,35 @@
   "name": "Kelvin Klein",
   "avatar": "https://avatars.githubusercontent.com/u/116825112?u=a4f101b2c763c52184c063cb1de8cef463e252e4&v=4",
   "total_stars": 0,
-  "total_commits": 59,
-  "total_prs": 0,
+  "total_commits": 506,
+  "total_prs": 22,
   "total_issues": 0,
-  "total_contributions": 590,
+  "total_contributions": 595,
   "top_languages": [
+    {
+      "name": "JavaScript",
+      "color": "#f1e05a",
+      "percentage": 52.43638659354551
+    },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "percentage": 51.85716124050958
+      "percentage": 16.05058787852687
     },
     {
-      "name": "Java",
-      "color": "#b07219",
-      "percentage": 13.407026122764124
+      "name": "Dart",
+      "color": "#00B4AB",
+      "percentage": 13.900774173005237
     },
     {
-      "name": "Python",
-      "color": "#3572A5",
-      "percentage": 9.451035902715223
+      "name": "HTML",
+      "color": "#e34c26",
+      "percentage": 8.734505773186362
     },
     {
-      "name": "Svelte",
-      "color": "#ff3e00",
-      "percentage": 5.460043752412816
-    },
-    {
-      "name": "C#",
-      "color": "#178600",
-      "percentage": 4.8518852142581395
+      "name": "C++",
+      "color": "#f34b7d",
+      "percentage": 1.6999964232628069
     }
   ]
 }
