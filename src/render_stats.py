@@ -149,7 +149,7 @@ def render_svg(
     logger.info(f"Writing output to {output_path}")
     write_output(output_path, svg_content)
 
-    logger.info(f"✅ SVG generated successfully: {output_path}")
+    logger.info(f"SVG generated successfully: {output_path}")
 
 
 def main() -> None:
