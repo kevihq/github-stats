@@ -90,82 +90,86 @@
         >@{{ username }} | Level {{ (total_contributions // 100) + 1 }} Artificer</text>
   </g>
 
-  <g transform="translate(40, 150)" class="animate-slide-up delay-1">
-    <g transform="translate(0, 0)">
-      <rect width="160" height="80" class="stat-box" />
-      <rect width="160" height="80" class="stat-box-border" />
-      <text x="20" y="30" class="text-base text-stat-label">Total XP</text>
-      <text
-                x="20"
-                y="60"
-                class="text-base text-stat-value"
-            >{{ total_contributions }}</text>
-    </g>
+  <g transform="translate(40, 150)">
+    <g class="animate-slide-up delay-1">
+      <g transform="translate(0, 0)">
+        <rect width="160" height="80" class="stat-box" />
+        <rect width="160" height="80" class="stat-box-border" />
+        <text x="20" y="30" class="text-base text-stat-label">Total XP</text>
+        <text
+                  x="20"
+                  y="60"
+                  class="text-base text-stat-value"
+              >{{ total_contributions }}</text>
+      </g>
 
-    <g transform="translate(180, 0)">
-      <rect width="160" height="80" class="stat-box" />
-      <rect width="160" height="80" class="stat-box-border" />
-      <text x="20" y="30" class="text-base text-stat-label">Commits</text>
-      <text
-                x="20"
-                y="60"
-                class="text-base text-stat-value"
-                fill="#79c0ff"
-            >{{ total_commits }}</text>
-    </g>
+      <g transform="translate(180, 0)">
+        <rect width="160" height="80" class="stat-box" />
+        <rect width="160" height="80" class="stat-box-border" />
+        <text x="20" y="30" class="text-base text-stat-label">Commits</text>
+        <text
+                  x="20"
+                  y="60"
+                  class="text-base text-stat-value"
+                  fill="#79c0ff"
+              >{{ total_commits }}</text>
+      </g>
 
-    <g transform="translate(360, 0)">
-      <rect width="160" height="80" class="stat-box" />
-      <rect width="160" height="80" class="stat-box-border" />
-      <text x="20" y="30" class="text-base text-stat-label">Pull Req.</text>
-      <text
-                x="20"
-                y="60"
-                class="text-base text-stat-value"
-                fill="#d2a8ff"
-            >{{ total_prs }}</text>
-    </g>
+      <g transform="translate(360, 0)">
+        <rect width="160" height="80" class="stat-box" />
+        <rect width="160" height="80" class="stat-box-border" />
+        <text x="20" y="30" class="text-base text-stat-label">Pull Req.</text>
+        <text
+                  x="20"
+                  y="60"
+                  class="text-base text-stat-value"
+                  fill="#d2a8ff"
+              >{{ total_prs }}</text>
+      </g>
 
-    <g transform="translate(540, 0)">
-      <rect width="160" height="80" class="stat-box" />
-      <rect width="160" height="80" class="stat-box-border" />
-      <text x="20" y="30" class="text-base text-stat-label">Issues</text>
-      <text
-                x="20"
-                y="60"
-                class="text-base text-stat-value"
-                fill="#ff7b72"
-            >{{ total_issues }}</text>
+      <g transform="translate(540, 0)">
+        <rect width="160" height="80" class="stat-box" />
+        <rect width="160" height="80" class="stat-box-border" />
+        <text x="20" y="30" class="text-base text-stat-label">Issues</text>
+        <text
+                  x="20"
+                  y="60"
+                  class="text-base text-stat-value"
+                  fill="#ff7b72"
+              >{{ total_issues }}</text>
+      </g>
     </g>
   </g>
 
-  <g transform="translate(40, 270)" class="animate-slide-up delay-2">
-    <text
-            x="0"
-            y="0"
-            class="text-base text-stat-label"
-            style="font-size: 14px; fill: #ffffff;"
-        >Top Masteries</text>
-
-    {% for lang in top_languages %}
-    <g transform="translate(0, {{ loop.index0 * 28 + 20 }})">
-      <text x="0" y="10" class="text-base text-lang-name">{{ lang.name }}</text>
-      <rect x="120" y="2" width="500" height="8" class="progress-bg" />
-      <rect
-                x="120"
-                y="2"
-                width="{{ lang.percentage * 5 }}"
-                height="8"
-                fill="{{ lang.color }}"
-                class="progress-bar"
-            />
+  <g transform="translate(40, 270)">
+    <g class="animate-slide-up delay-2">
       <text
-                x="640"
-                y="10"
-                class="text-base text-lang-percent"
-            >{{ "%.1f"|format(lang.percentage) }}%</text>
+              x="0"
+              y="0"
+              class="text-base text-stat-label"
+              style="font-size: 14px; fill: #ffffff;"
+          >Top Masteries</text>
+
+      {% for lang in top_languages %}
+      <g transform="translate(0, {{ loop.index0 * 28 + 20 }})">
+        <text x="0" y="10" class="text-base text-lang-name">{{ lang.name }}</text>
+        <rect x="120" y="2" width="500" height="8" class="progress-bg" />
+        <rect
+                  x="120"
+                  y="2"
+                  width="{{ lang.percentage * 5 }}"
+                  height="8"
+                  fill="{{ lang.color }}"
+                  class="progress-bar"
+              />
+        <text
+                  x="640"
+                  y="10"
+                  class="text-base text-lang-percent"
+              >{{ "%.1f"|format(lang.percentage) }}%</text>
+      </g>
+      {% endfor %}
     </g>
-    {% endfor %}
   </g>
 
   <g transform="translate(780, 460)" class="animate-fade-in delay-3">
@@ -173,6 +177,6 @@
             text-anchor="end"
             class="text-base text-subtitle"
             style="font-size: 10px;"
-        >Generated by Antigravity</text>
+        >Kelvin Klein - 2026</text>
   </g>
 </svg>
