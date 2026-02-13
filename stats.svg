@@ -1,6 +1,6 @@
 <svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="descId-kevihq">
   <title id="titleId-kevihq">Estatísticas de GitHub de Kelvin Klein</title>
-  <desc id="descId-kevihq">Cartão de estatísticas estilo RPG para o usuário kevihq. Nível 6 Artificer, com 599 XP total, 510 commits, 22 pull requests e 0 issues.</desc>
+  <desc id="descId-kevihq">Cartão de estatísticas estilo RPG para o usuário kevihq. Nível 7 Artificer, com 600 XP total, 511 commits, 22 pull requests e 0 issues.</desc>
 
   <style>
     /* --- Typography & Base --- */
@@ -68,7 +68,7 @@
 
     <!-- Meta info -->
     <text x="100" y="35" class="text-base text-title">Kelvin Klein</text>
-    <text x="100" y="60" class="text-base text-subtitle">@kevihq | Level 6 Artificer</text>
+    <text x="100" y="60" class="text-base text-subtitle">@kevihq • Level 7 Artificer</text>
   </g>
 
   <!-- Stats Row -->
@@ -78,7 +78,7 @@
       <rect width="160" height="80" class="stat-box" />
       <rect width="160" height="80" class="stat-box-border" />
       <text x="20" y="30" class="text-base text-stat-label">Total XP</text>
-      <text x="20" y="60" class="text-base text-stat-value">599</text>
+      <text x="20" y="60" class="text-base text-stat-value">600</text>
     </g>
 
     <!-- Stat 2: Commits (STR) -->
@@ -86,7 +86,7 @@
       <rect width="160" height="80" class="stat-box" />
       <rect width="160" height="80" class="stat-box-border" />
       <text x="20" y="30" class="text-base text-stat-label">Commits</text>
-      <text x="20" y="60" class="text-base text-stat-value" fill="#79c0ff">510</text>
+      <text x="20" y="60" class="text-base text-stat-value" fill="#79c0ff">511</text>
     </g>
 
     <!-- Stat 3: PRs (DEX) -->
