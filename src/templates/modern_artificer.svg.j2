@@ -8,19 +8,21 @@
     aria-labelledby="descId-{{ username }}"
 >
   <title id="titleId-{{ username }}">GitHub Stats for {{ name }}</title>
-  <desc id="descId-{{ username }}">Stats for {{ username }}: Level {{ (total_contributions // 100) + 1 }} Artificer, {{ total_contributions }} XP, {{ total_commits }} commits.</desc>
+  <desc
+        id="descId-{{ username }}"
+    >Stats for {{ username }}: Level {{ (total_contributions // 100) + 1 }} Artificer, {{ total_contributions }} XP, {{ total_commits }} commits.</desc>
 
   <style>
     .text-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     .text-mono { font-family: "SF Mono", "Segoe UI Mono", "Roboto Mono", monospace; }
-    
+
     .text-title { font-weight: 800; font-size: 32px; fill: #ffffff; letter-spacing: -0.5px; }
     .text-handle { font-weight: 500; font-size: 16px; fill: #8b949e; }
     .text-level { font-weight: 700; font-size: 12px; fill: #58a6ff; text-transform: uppercase; letter-spacing: 1.5px; }
-    
+
     .stat-value { font-weight: 700; font-size: 28px; fill: #ffffff; letter-spacing: -0.5px; }
     .stat-label { font-weight: 600; font-size: 11px; fill: #8b949e; text-transform: uppercase; letter-spacing: 1px; }
-    
+
     .lang-name { font-weight: 600; font-size: 13px; fill: #c9d1d9; }
     .lang-percent { font-weight: 500; font-size: 13px; fill: #8b949e; text-anchor: end; }
 
@@ -38,7 +40,7 @@
     .animate-fade { animation: fadeIn 0.8s ease-out forwards; }
     .animate-slide { animation: slideRight 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
     .animate-scale { animation: scaleIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
-    
+
     .delay-1 { animation-delay: 0.1s; }
     .delay-2 { animation-delay: 0.2s; }
     .delay-3 { animation-delay: 0.3s; }
@@ -75,34 +77,63 @@
 
   <!-- Background & Border -->
   <rect width="800" height="450" rx="16" class="card-bg" />
-  <rect x="0.5" y="0.5" width="799" height="449" rx="16" class="card-border" fill="none" />
+  <rect
+        x="0.5"
+        y="0.5"
+        width="799"
+        height="449"
+        rx="16"
+        class="card-border"
+        fill="none"
+    />
 
   <!-- Subtle grid pattern overlay -->
   <mask id="grid-mask">
     <rect width="800" height="450" fill="white" />
     <path d="M0 0L800 450M800 0L0 450" stroke="black" stroke-width="2" />
   </mask>
-  <path d="M0 100 H800 M0 200 H800 M0 300 H800 M0 400 H800 M200 0 V450 M400 0 V450 M600 0 V450" stroke="#21262d" stroke-width="1" stroke-dasharray="4 4" opacity="0.4" />
+  <path
+        d="M0 100 H800 M0 200 H800 M0 300 H800 M0 400 H800 M200 0 V450 M400 0 V450 M600 0 V450"
+        stroke="#21262d"
+        stroke-width="1"
+        stroke-dasharray="4 4"
+        opacity="0.4"
+    />
 
 
   <!-- Main Content Container -->
   <g transform="translate(60, 60)">
-    
+
     <!-- Header: Name & Level -->
     <g class="animate-slide">
-      <text x="0" y="10" class="text-mono text-level">Level {{ (total_contributions // 100) + 1 }} Artificer</text>
+      <text
+                x="0"
+                y="10"
+                class="text-mono text-level"
+            >Level {{ (total_contributions // 100) + 1 }} Artificer</text>
       <text x="0" y="50" class="text-sans text-title">{{ name }}</text>
       <text x="0" y="75" class="text-sans text-handle">@{{ username }}</text>
     </g>
 
     <!-- Stats Grid -->
     <g transform="translate(0, 130)">
-      
+
       <!-- Total XP -->
       <g transform="translate(0, 0)">
         <g class="animate-scale delay-1">
-          <use href="#icon-activity" x="0" y="0" width="24" height="24" class="icon-base icon-accent" />
-          <text x="36" y="20" class="text-sans stat-value">{{ total_contributions }}</text>
+          <use
+                        href="#icon-activity"
+                        x="0"
+                        y="0"
+                        width="24"
+                        height="24"
+                        class="icon-base icon-accent"
+                    />
+          <text
+                        x="36"
+                        y="20"
+                        class="text-sans stat-value"
+                    >{{ total_contributions }}</text>
           <text x="36" y="40" class="text-sans stat-label">Total XP</text>
         </g>
       </g>
@@ -110,8 +141,19 @@
       <!-- Commits -->
       <g transform="translate(180, 0)">
         <g class="animate-scale delay-2">
-          <use href="#icon-git-commit" x="0" y="0" width="24" height="24" class="icon-base icon-success" />
-          <text x="36" y="20" class="text-sans stat-value">{{ total_commits }}</text>
+          <use
+                        href="#icon-git-commit"
+                        x="0"
+                        y="0"
+                        width="24"
+                        height="24"
+                        class="icon-base icon-success"
+                    />
+          <text
+                        x="36"
+                        y="20"
+                        class="text-sans stat-value"
+                    >{{ total_commits }}</text>
           <text x="36" y="40" class="text-sans stat-label">Commits</text>
         </g>
       </g>
@@ -119,8 +161,19 @@
       <!-- PRs -->
       <g transform="translate(360, 0)">
         <g class="animate-scale delay-3">
-          <use href="#icon-git-pull-request" x="0" y="0" width="24" height="24" class="icon-base icon-purple" />
-          <text x="36" y="20" class="text-sans stat-value">{{ total_prs }}</text>
+          <use
+                        href="#icon-git-pull-request"
+                        x="0"
+                        y="0"
+                        width="24"
+                        height="24"
+                        class="icon-base icon-purple"
+                    />
+          <text
+                        x="36"
+                        y="20"
+                        class="text-sans stat-value"
+                    >{{ total_prs }}</text>
           <text x="36" y="40" class="text-sans stat-label">Pull Req.</text>
         </g>
       </g>
@@ -128,8 +181,19 @@
       <!-- Followers (Replaces Issues) -->
       <g transform="translate(540, 0)">
         <g class="animate-scale delay-4">
-          <use href="#icon-users" x="0" y="0" width="24" height="24" class="icon-base icon-accent" />
-          <text x="36" y="20" class="text-sans stat-value">{{ total_followers }}</text>
+          <use
+                        href="#icon-users"
+                        x="0"
+                        y="0"
+                        width="24"
+                        height="24"
+                        class="icon-base icon-accent"
+                    />
+          <text
+                        x="36"
+                        y="20"
+                        class="text-sans stat-value"
+                    >{{ total_followers }}</text>
           <text x="36" y="40" class="text-sans stat-label">Followers</text>
         </g>
       </g>
@@ -138,27 +202,61 @@
     <!-- Masteries Section -->
     <g transform="translate(0, 240)">
       <line x1="0" y1="0" x2="680" y2="0" class="separator" />
-      <text x="0" y="30" class="text-sans stat-label" style="opacity: 0.7;">Top Masteries</text>
-      
+      <text
+                x="0"
+                y="30"
+                class="text-sans stat-label"
+                style="opacity: 0.7;"
+            >Top Masteries</text>
+
       <g transform="translate(0, 50)">
         {% for lang in top_languages[:4] %}
-        <g transform="translate({{ (loop.index0 % 2) * 350 }}, {{ (loop.index0 // 2) * 50 }})" class="animate-fade" style="animation-delay: {{ 0.5 + loop.index0 * 0.1 }}s">
+        <g
+                    transform="translate({{ (loop.index0 % 2) * 350 }}, {{ (loop.index0 // 2) * 50 }})"
+                    class="animate-fade"
+                    style="animation-delay: {{ 0.5 + loop.index0 * 0.1 }}s"
+                >
           <text x="0" y="4" class="text-sans lang-name">{{ lang.name }}</text>
-          <text x="300" y="4" class="text-sans lang-percent">{{ "%.1f"|format(lang.percentage) }}%</text>
-          
+          <text
+                        x="300"
+                        y="4"
+                        class="text-sans lang-percent"
+                    >{{ "%.1f"|format(lang.percentage) }}%</text>
+
           <!-- Modern Thin Progress Bar -->
           <rect x="0" y="12" width="300" height="4" fill="#21262d" rx="2" />
-          <rect x="0" y="12" width="{{ lang.percentage * 3 }}" height="4" fill="{{ lang.color }}" rx="2">
-            <animate attributeName="width" from="0" to="{{ lang.percentage * 3 }}" dur="1s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" />
+          <rect
+                        x="0"
+                        y="12"
+                        width="{{ lang.percentage * 3 }}"
+                        height="4"
+                        fill="{{ lang.color }}"
+                        rx="2"
+                    >
+            <animate
+                            attributeName="width"
+                            from="0"
+                            to="{{ lang.percentage * 3 }}"
+                            dur="1s"
+                            fill="freeze"
+                            calcMode="spline"
+                            keySplines="0.2 0.8 0.2 1"
+                        />
           </rect>
         </g>
         {% endfor %}
       </g>
     </g>
   </g>
-  
+
   <!-- Footer Brand -->
-  <text x="760" y="420" text-anchor="end" class="text-sans text-handle" style="font-size: 10px; opacity: 0.3;">
-    ANTIGRAVITY // {{ name }}
+  <text
+        x="760"
+        y="420"
+        text-anchor="end"
+        class="text-sans text-handle"
+        style="font-size: 10px; opacity: 0.3;"
+    >
+    {{ name }} 2026
   </text>
 </svg>
