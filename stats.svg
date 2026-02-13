@@ -1,6 +1,6 @@
 <svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="descId-kevihq">
   <title id="titleId-kevihq">Estatísticas de GitHub de Kelvin Klein</title>
-  <desc id="descId-kevihq">Cartão de estatísticas estilo RPG para o usuário kevihq. Nível 7 Artificer, com 600 XP total, 511 commits, 22 pull requests e 0 issues.</desc>
+  <desc id="descId-kevihq">Cartão de estatísticas estilo RPG para o usuário kevihq. Nível 7 Artificer, com 601 XP total, 512 commits, 22 pull requests e 0 issues.</desc>
 
   <style>
     /* --- Typography & Base --- */
@@ -68,7 +68,7 @@
 
     <!-- Meta info -->
     <text x="100" y="35" class="text-base text-title">Kelvin Klein</text>
-    <text x="100" y="60" class="text-base text-subtitle">@kevihq • Level 7 Artificer</text>
+    <text x="100" y="60" class="text-base text-subtitle">@kevihq | Level 7 Artificer</text>
   </g>
 
   <!-- Stats Row -->
@@ -78,7 +78,7 @@
       <rect width="160" height="80" class="stat-box" />
       <rect width="160" height="80" class="stat-box-border" />
       <text x="20" y="30" class="text-base text-stat-label">Total XP</text>
-      <text x="20" y="60" class="text-base text-stat-value">600</text>
+      <text x="20" y="60" class="text-base text-stat-value">601</text>
     </g>
 
     <!-- Stat 2: Commits (STR) -->
@@ -86,7 +86,7 @@
       <rect width="160" height="80" class="stat-box" />
       <rect width="160" height="80" class="stat-box-border" />
       <text x="20" y="30" class="text-base text-stat-label">Commits</text>
-      <text x="20" y="60" class="text-base text-stat-value" fill="#79c0ff">511</text>
+      <text x="20" y="60" class="text-base text-stat-value" fill="#79c0ff">512</text>
     </g>
 
     <!-- Stat 3: PRs (DEX) -->
@@ -116,7 +116,7 @@
 
       <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
       <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
-      <rect x="120" y="2" width="262.1565033251103" height="8" fill="#f1e05a" class="progress-bar" />
+      <rect x="120" y="2" width="262.1565458454786" height="8" fill="#f1e05a" class="progress-bar" />
 
       <text x="640" y="10" class="text-base text-lang-percent">52.4%</text>
     </g>
@@ -126,7 +126,7 @@
 
       <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
       <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
-      <rect x="120" y="2" width="80.24515547119996" height="8" fill="#3178c6" class="progress-bar" />
+      <rect x="120" y="2" width="80.24516848653059" height="8" fill="#3178c6" class="progress-bar" />
 
       <text x="640" y="10" class="text-base text-lang-percent">16.0%</text>
     </g>
@@ -136,7 +136,7 @@
 
       <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
       <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
-      <rect x="120" y="2" width="69.49712952104187" height="8" fill="#00B4AB" class="progress-bar" />
+      <rect x="120" y="2" width="69.49714079310077" height="8" fill="#00B4AB" class="progress-bar" />
 
       <text x="640" y="10" class="text-base text-lang-percent">13.9%</text>
     </g>
@@ -146,7 +146,7 @@
 
       <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
       <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
-      <rect x="120" y="2" width="43.66829296459155" height="8" fill="#e34c26" class="progress-bar" />
+      <rect x="120" y="2" width="43.66830004735271" height="8" fill="#e34c26" class="progress-bar" />
 
       <text x="640" y="10" class="text-base text-lang-percent">8.7%</text>
     </g>
@@ -156,7 +156,7 @@
 
       <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
       <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
-      <rect x="120" y="2" width="8.499157683047319" height="8" fill="#f34b7d" class="progress-bar" />
+      <rect x="120" y="2" width="8.499159061564772" height="8" fill="#f34b7d" class="progress-bar" />
 
       <text x="640" y="10" class="text-base text-lang-percent">1.7%</text>
     </g>
