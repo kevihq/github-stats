@@ -1,128 +1,168 @@
 import json
 import os
+import sys
+import base64
 from collections import defaultdict
+from typing import Any, Dict, List
 
 import requests
 from dotenv import load_dotenv
 
 load_dotenv()
 
-GH_TOKEN = os.getenv("GH_TOKEN", None)
+GH_TOKEN = os.getenv("GH_TOKEN")
 
 
-def run_query(query, variables=None):
-    headers = {"Authorization": f"Bearer {GH_TOKEN}"}
-    request = requests.post(
-        "https://api.github.com/graphql",
-        json={"query": query, "variables": variables},
-        headers=headers,
-    )
-    if request.status_code == 200:
-        return request.json()
-    else:
-        raise Exception(
-            f"Query failed to run by returning code of {request.status_code}. {query}"
+class GitHubAPIError(Exception):
+    """Custom exception for GitHub API failures."""
+
+    pass
+
+
+def image_to_base64(url: str) -> str:
+    """Downloads an image and converts it to base64 string."""
+    if not url:
+        return ""
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        encoded = base64.b64encode(response.content).decode("utf-8")
+        content_type = response.headers.get("content-type", "image/png")
+        return f"data:{content_type};base64,{encoded}"
+    except Exception as e:
+        print(f"⚠️ Failed to convert avatar to base64: {e}")
+        return url  # Fallback to original URL if conversion fails
+
+
+def execute_graphql_query(
+    query: str, variables: Dict[str, Any] | None = None
+) -> Dict[str, Any]:
+    if not GH_TOKEN:
+        raise GitHubAPIError("GH_TOKEN environment variable is not set.")
+
+    headers = {
+        "Authorization": f"Bearer {GH_TOKEN}",
+        "Content-Type": "application/json",
+    }
+
+    try:
+        response = requests.post(
+            "https://api.github.com/graphql",
+            json={"query": query, "variables": variables},
+            headers=headers,
+            timeout=10,
         )
+        response.raise_for_status()
+
+        payload = response.json()
+        if "errors" in payload:
+            raise GitHubAPIError(f"GraphQL Error: {payload['errors']}")
+
+        return payload
+
+    except requests.exceptions.RequestException as e:
+        raise GitHubAPIError(f"Connection failed: {e}")
 
 
-def get_github_stats():
+def fetch_user_metrics() -> Dict[str, Any]:
     query = """
     query {
-        viewer {
+      viewer {
         login
         name
         avatarUrl
         repositories(first: 100, ownerAffiliations: OWNER, isFork: false, orderBy: {field: STARGAZERS, direction: DESC}) {
-            nodes {
+          nodes {
             name
-            stargazers {
-                totalCount
-            }
+            stargazers { totalCount }
             languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
-                edges {
+              edges {
                 size
-                node {
-                    name
-                    color
-                }
-                }
+                node { name color }
+              }
             }
-            }
+          }
         }
         contributionsCollection {
-            totalCommitContributions
-            totalPullRequestContributions
-            totalIssueContributions
-            contributionCalendar {
-            totalContributions
-            }
+          totalCommitContributions
+          totalPullRequestContributions
+          totalIssueContributions
+          contributionCalendar { totalContributions }
         }
-        }
+      }
     }
     """
 
-    result = run_query(query)
-    data = result["data"]["viewer"]
+    response = execute_graphql_query(query)
+    viewer = response["data"]["viewer"]
+    repos = viewer["repositories"]["nodes"]
+    contributions = viewer["contributionsCollection"]
 
-    # processamento de dados
+    # Aggregate statistics
+    total_stars = sum(repo["stargazers"]["totalCount"] for repo in repos)
 
-    total_stars = sum(
-        repo["stargazers"]["totalCount"] for repo in data["repositories"]["nodes"]
-    )
+    # Calculate language distribution by byte size
+    lang_bytes = defaultdict(int)
+    lang_colors = {}
 
-    language_stats = defaultdict(int)
-    language_colors = {}
-
-    for repo in data["repositories"]["nodes"]:
+    for repo in repos:
         for edge in repo["languages"]["edges"]:
-            lang_name = edge["node"]["name"]
-            size = edge["size"]
-            color = edge["node"]["color"]
+            node = edge["node"]
+            lang_bytes[node["name"]] += edge["size"]
+            lang_colors[node["name"]] = node["color"]
 
-            language_stats[lang_name] += size
-            language_colors[lang_name] = color
+    total_bytes = sum(lang_bytes.values())
 
-    total_bytes = sum(language_stats.values())
+    # Format top 5 languages
     top_languages = []
+    sorted_langs = sorted(lang_bytes.items(), key=lambda x: x[1], reverse=True)[:5]
 
-    sorted_languages = sorted(language_stats.items(), key=lambda x: x[1], reverse=True)[
-        :5
-    ]
-
-    for lang, size in sorted_languages:
-        percentage = (size / total_bytes) * 100 if total_bytes > 0 else 0
+    for name, size in sorted_langs:
+        percent = (size / total_bytes * 100) if total_bytes > 0 else 0
         top_languages.append(
-            {"name": lang, "color": language_colors[lang], "percentage": percentage}
+            {
+                "name": name,
+                "color": lang_colors.get(name, "#ccc"),
+                "percentage": percent,
+            }
         )
 
-    stats = {
-        "username": data["login"],
-        "name": data["name"] if data["name"] else data["login"],
-        "avatar": data["avatarUrl"],
+    # Convert avatar to base64 for self-contained SVG
+    avatar_b64 = image_to_base64(viewer["avatarUrl"])
+
+    return {
+        "username": viewer["login"],
+        "name": viewer["name"] or viewer["login"],
+        "avatar": avatar_b64,
         "total_stars": total_stars,
-        "total_commits": data["contributionsCollection"]["totalCommitContributions"],
-        "total_prs": data["contributionsCollection"]["totalPullRequestContributions"],
-        "total_issues": data["contributionsCollection"]["totalIssueContributions"],
-        "total_contributions": data["contributionsCollection"]["contributionCalendar"][
+        "total_commits": contributions["totalCommitContributions"],
+        "total_prs": contributions["totalPullRequestContributions"],
+        "total_issues": contributions["totalIssueContributions"],
+        "total_contributions": contributions["contributionCalendar"][
             "totalContributions"
         ],
         "top_languages": top_languages,
     }
 
-    return stats
+
+def main():
+    try:
+        print("Fetching GitHub metrics...")
+        stats = fetch_user_metrics()
+
+        output_path = "stats.json"
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(stats, f, indent=2, ensure_ascii=False)
+
+        print(f"Metrics saved to {output_path}")
+
+    except GitHubAPIError as e:
+        print(f"API Error: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Unexpected Error: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
-    try:
-        print("Getting Github Stats...")
-        stats = get_github_stats()
-
-        print("Stats processed suceffuly:")
-        print(json.dumps(stats, indent=2, ensure_ascii=False))
-
-        with open("stats.json", "w", encoding="utf-8") as f:
-            json.dump(stats, f, indent=2, ensure_ascii=False)
-            print("Stats saved to stats.json")
-
-    except Exception as e:
-        print("Error fetching stats:", e)
+    main()
