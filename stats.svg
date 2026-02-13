@@ -68,7 +68,7 @@
 
     <!-- Meta info -->
     <text x="100" y="35" class="text-base text-title">Kelvin Klein</text>
-    <text x="100" y="60" class="text-base text-subtitle">@kevihq • Level 6 Artificer</text>
+    <text x="100" y="60" class="text-base text-subtitle">@kevihq | Level 6 Artificer</text>
   </g>
 
   <!-- Stats Row -->
