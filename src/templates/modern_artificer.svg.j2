@@ -98,31 +98,39 @@
     <g transform="translate(0, 130)">
       
       <!-- Total XP -->
-      <g class="animate-scale delay-1">
-        <use href="#icon-activity" x="0" y="0" width="24" height="24" class="icon-base icon-accent" />
-        <text x="36" y="20" class="text-sans stat-value">{{ total_contributions }}</text>
-        <text x="36" y="40" class="text-sans stat-label">Total XP</text>
+      <g transform="translate(0, 0)">
+        <g class="animate-scale delay-1">
+          <use href="#icon-activity" x="0" y="0" width="24" height="24" class="icon-base icon-accent" />
+          <text x="36" y="20" class="text-sans stat-value">{{ total_contributions }}</text>
+          <text x="36" y="40" class="text-sans stat-label">Total XP</text>
+        </g>
       </g>
 
       <!-- Commits -->
-      <g transform="translate(180, 0)" class="animate-scale delay-2">
-        <use href="#icon-git-commit" x="0" y="0" width="24" height="24" class="icon-base icon-success" />
-        <text x="36" y="20" class="text-sans stat-value">{{ total_commits }}</text>
-        <text x="36" y="40" class="text-sans stat-label">Commits</text>
+      <g transform="translate(180, 0)">
+        <g class="animate-scale delay-2">
+          <use href="#icon-git-commit" x="0" y="0" width="24" height="24" class="icon-base icon-success" />
+          <text x="36" y="20" class="text-sans stat-value">{{ total_commits }}</text>
+          <text x="36" y="40" class="text-sans stat-label">Commits</text>
+        </g>
       </g>
 
       <!-- PRs -->
-      <g transform="translate(360, 0)" class="animate-scale delay-3">
-        <use href="#icon-git-pull-request" x="0" y="0" width="24" height="24" class="icon-base icon-purple" />
-        <text x="36" y="20" class="text-sans stat-value">{{ total_prs }}</text>
-        <text x="36" y="40" class="text-sans stat-label">Pull Req.</text>
+      <g transform="translate(360, 0)">
+        <g class="animate-scale delay-3">
+          <use href="#icon-git-pull-request" x="0" y="0" width="24" height="24" class="icon-base icon-purple" />
+          <text x="36" y="20" class="text-sans stat-value">{{ total_prs }}</text>
+          <text x="36" y="40" class="text-sans stat-label">Pull Req.</text>
+        </g>
       </g>
 
       <!-- Issues -->
-      <g transform="translate(540, 0)" class="animate-scale delay-4">
-        <use href="#icon-alert-circle" x="0" y="0" width="24" height="24" class="icon-base icon-danger" />
-        <text x="36" y="20" class="text-sans stat-value">{{ total_issues }}</text>
-        <text x="36" y="40" class="text-sans stat-label">Issues</text>
+      <g transform="translate(540, 0)">
+        <g class="animate-scale delay-4">
+          <use href="#icon-alert-circle" x="0" y="0" width="24" height="24" class="icon-base icon-danger" />
+          <text x="36" y="20" class="text-sans stat-value">{{ total_issues }}</text>
+          <text x="36" y="40" class="text-sans stat-label">Issues</text>
+        </g>
       </g>
     </g>
 
