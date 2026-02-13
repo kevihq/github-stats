@@ -1,248 +1,183 @@
 <svg
     width="800"
-    height="480"
-    viewBox="0 0 800 480"
+    height="400"
+    viewBox="0 0 800 400"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     role="img"
     aria-labelledby="descId-kevihq"
 >
   <title id="titleId-kevihq">GitHub Stats for Kelvin Klein</title>
-  <desc
-        id="descId-kevihq"
-    >RPG-style stats card for user kevihq. Level 7 Artificer, with 601 total XP, 512 commits, 22 pull requests and 0 issues.</desc>
+  <desc id="descId-kevihq">Stats for kevihq: Level 7 Artificer, 601 XP, 512 commits.</desc>
 
   <style>
-    .text-base { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #c9d1d9; }
-    .text-title { font-weight: 600; font-size: 24px; fill: #ffffff; }
-    .text-subtitle { font-weight: 400; font-size: 14px; fill: #8b949e; }
-    .text-stat-value { font-weight: 700; font-size: 28px; fill: #58a6ff; }
-    .text-stat-label { font-weight: 600; font-size: 12px; fill: #8b949e; text-transform: uppercase; letter-spacing: 1px; }
-    .text-lang-name { font-weight: 600; font-size: 14px; fill: #c9d1d9; }
-    .text-lang-percent { font-weight: 400; font-size: 12px; fill: #8b949e; }
+    .text-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .text-mono { font-family: "SF Mono", "Segoe UI Mono", "Roboto Mono", monospace; }
+    
+    .text-title { font-weight: 800; font-size: 32px; fill: #ffffff; letter-spacing: -0.5px; }
+    .text-handle { font-weight: 500; font-size: 16px; fill: #8b949e; }
+    .text-level { font-weight: 700; font-size: 12px; fill: #58a6ff; text-transform: uppercase; letter-spacing: 1.5px; }
+    
+    .stat-value { font-weight: 700; font-size: 28px; fill: #ffffff; letter-spacing: -0.5px; }
+    .stat-label { font-weight: 600; font-size: 11px; fill: #8b949e; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .lang-name { font-weight: 600; font-size: 13px; fill: #c9d1d9; }
+    .lang-percent { font-weight: 500; font-size: 13px; fill: #8b949e; text-anchor: end; }
+
+    .icon-base { stroke: #c9d1d9; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .icon-accent { stroke: #58a6ff; }
+    .icon-success { stroke: #3fb950; }
+    .icon-purple { stroke: #a371f7; }
+    .icon-danger { stroke: #f85149; }
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    @keyframes fillBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes slideRight { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes growBar { from { width: 0; } }
 
-    .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
-    .animate-slide-up { animation: slideUp 0.8s ease-out forwards; opacity: 0; }
+    .animate-fade { animation: fadeIn 0.8s ease-out forwards; }
+    .animate-slide { animation: slideRight 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
+    .animate-scale { animation: scaleIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
+    
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
 
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
-
-    .card-bg { fill: #0d1117; rx: 10px; }
-    .card-border { stroke: #30363d; stroke-width: 1; rx: 10px; fill: none; }
-
-    .stat-box { fill: #161b22; rx: 6px; }
-    .stat-box-border { stroke: #30363d; stroke-width: 1; rx: 6px; fill: none; }
-
-    .progress-bg { fill: #21262d; rx: 4px; }
-    .progress-bar {
-        rx: 4px;
-        transform-origin: left;
-        animation: fillBar 1s ease-out forwards;
-    }
+    .card-bg { fill: #0d1117; }
+    .card-border { stroke: #30363d; stroke-width: 1; }
+    .separator { stroke: #21262d; stroke-width: 1; }
   </style>
 
-  <rect width="800" height="480" class="card-bg" />
-
   <defs>
-    <pattern
-            id="grid-kevihq"
-            width="40"
-            height="40"
-            patternUnits="userSpaceOnUse"
-        >
-      <path
-                d="M 40 0 L 0 0 0 40"
-                fill="none"
-                stroke="#21262d"
-                stroke-width="1"
-                opacity="0.3"
-            />
-    </pattern>
-    <clipPath id="avatar-clip-kevihq">
-      <circle cx="40" cy="40" r="40" />
-    </clipPath>
+    <!-- Lucide Icons -->
+    <symbol id="icon-activity" viewBox="0 0 24 24">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+    </symbol>
+    <symbol id="icon-git-commit" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3" />
+      <line x1="3" y1="12" x2="9" y2="12" />
+      <line x1="15" y1="12" x2="21" y2="12" />
+    </symbol>
+    <symbol id="icon-git-pull-request" viewBox="0 0 24 24">
+      <circle cx="18" cy="18" r="3" />
+      <circle cx="6" cy="6" r="3" />
+      <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+      <line x1="6" y1="9" x2="6" y2="21" />
+    </symbol>
+    <symbol id="icon-alert-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="8" x2="12" y2="12" />
+      <line x1="12" y1="16" x2="12.01" y2="16" />
+    </symbol>
   </defs>
 
-  <rect width="800" height="480" fill="url(#grid-kevihq)" rx="10" />
-  <rect width="800" height="480" class="card-border" />
+  <!-- Background & Border -->
+  <rect width="800" height="400" rx="16" class="card-bg" />
+  <rect x="0.5" y="0.5" width="799" height="399" rx="16" class="card-border" fill="none" />
 
-  <g transform="translate(40, 40)" class="animate-fade-in">
-    <circle cx="40" cy="40" r="42" fill="#30363d" />
-    <g clip-path="url(#avatar-clip-kevihq)" role="presentation">
-      <rect x="0" y="0" width="80" height="80" fill="#21262d" />
-      <circle cx="40" cy="30" r="14" fill="#8b949e" />
-      <path
-                d="M12 78 C16 58, 28 50, 40 50 C52 50, 64 58, 68 78 Z"
-                fill="#8b949e"
-            />
+  <!-- Subtle grid pattern overlay -->
+  <mask id="grid-mask">
+    <rect width="800" height="400" fill="white" />
+    <path d="M0 0L800 400M800 0L0 400" stroke="black" stroke-width="2" />
+  </mask>
+  <path d="M0 100 H800 M0 200 H800 M0 300 H800 M200 0 V400 M400 0 V400 M600 0 V400" stroke="#21262d" stroke-width="1" stroke-dasharray="4 4" opacity="0.4" />
+
+
+  <!-- Main Content Container -->
+  <g transform="translate(60, 60)">
+    
+    <!-- Header: Name & Level -->
+    <g class="animate-slide">
+      <text x="0" y="10" class="text-mono text-level">Level 7 Artificer</text>
+      <text x="0" y="50" class="text-sans text-title">Kelvin Klein</text>
+      <text x="0" y="75" class="text-sans text-handle">@kevihq</text>
     </g>
 
-    <text x="100" y="35" class="text-base text-title">Kelvin Klein</text>
-    <text
-            x="100"
-            y="60"
-            class="text-base text-subtitle"
-        >@kevihq | Level 7 Artificer</text>
-  </g>
-
-  <g transform="translate(40, 150)">
-    <g class="animate-slide-up delay-1">
-      <g transform="translate(0, 0)">
-        <rect width="160" height="80" class="stat-box" />
-        <rect width="160" height="80" class="stat-box-border" />
-        <text x="20" y="30" class="text-base text-stat-label">Total XP</text>
-        <text
-                  x="20"
-                  y="60"
-                  class="text-base text-stat-value"
-              >601</text>
+    <!-- Stats Grid -->
+    <g transform="translate(0, 130)">
+      
+      <!-- Total XP -->
+      <g class="animate-scale delay-1">
+        <use href="#icon-activity" x="0" y="0" width="24" height="24" class="icon-base icon-accent" />
+        <text x="36" y="20" class="text-sans stat-value">601</text>
+        <text x="36" y="40" class="text-sans stat-label">Total XP</text>
       </g>
 
-      <g transform="translate(180, 0)">
-        <rect width="160" height="80" class="stat-box" />
-        <rect width="160" height="80" class="stat-box-border" />
-        <text x="20" y="30" class="text-base text-stat-label">Commits</text>
-        <text
-                  x="20"
-                  y="60"
-                  class="text-base text-stat-value"
-                  fill="#79c0ff"
-              >512</text>
+      <!-- Commits -->
+      <g transform="translate(180, 0)" class="animate-scale delay-2">
+        <use href="#icon-git-commit" x="0" y="0" width="24" height="24" class="icon-base icon-success" />
+        <text x="36" y="20" class="text-sans stat-value">512</text>
+        <text x="36" y="40" class="text-sans stat-label">Commits</text>
       </g>
 
-      <g transform="translate(360, 0)">
-        <rect width="160" height="80" class="stat-box" />
-        <rect width="160" height="80" class="stat-box-border" />
-        <text x="20" y="30" class="text-base text-stat-label">Pull Req.</text>
-        <text
-                  x="20"
-                  y="60"
-                  class="text-base text-stat-value"
-                  fill="#d2a8ff"
-              >22</text>
+      <!-- PRs -->
+      <g transform="translate(360, 0)" class="animate-scale delay-3">
+        <use href="#icon-git-pull-request" x="0" y="0" width="24" height="24" class="icon-base icon-purple" />
+        <text x="36" y="20" class="text-sans stat-value">22</text>
+        <text x="36" y="40" class="text-sans stat-label">Pull Req.</text>
       </g>
 
-      <g transform="translate(540, 0)">
-        <rect width="160" height="80" class="stat-box" />
-        <rect width="160" height="80" class="stat-box-border" />
-        <text x="20" y="30" class="text-base text-stat-label">Issues</text>
-        <text
-                  x="20"
-                  y="60"
-                  class="text-base text-stat-value"
-                  fill="#ff7b72"
-              >0</text>
+      <!-- Issues -->
+      <g transform="translate(540, 0)" class="animate-scale delay-4">
+        <use href="#icon-alert-circle" x="0" y="0" width="24" height="24" class="icon-base icon-danger" />
+        <text x="36" y="20" class="text-sans stat-value">0</text>
+        <text x="36" y="40" class="text-sans stat-label">Issues</text>
       </g>
     </g>
-  </g>
 
-  <g transform="translate(40, 270)">
-    <g class="animate-slide-up delay-2">
-      <text
-              x="0"
-              y="0"
-              class="text-base text-stat-label"
-              style="font-size: 14px; fill: #ffffff;"
-          >Top Masteries</text>
-
-      <g transform="translate(0, 20)">
-        <text x="0" y="10" class="text-base text-lang-name">JavaScript</text>
-        <rect x="120" y="2" width="500" height="8" class="progress-bg" />
-        <rect
-                  x="120"
-                  y="2"
-                  width="262.1565458454786"
-                  height="8"
-                  fill="#f1e05a"
-                  class="progress-bar"
-              />
-        <text
-                  x="640"
-                  y="10"
-                  class="text-base text-lang-percent"
-              >52.4%</text>
-      </g>
-      <g transform="translate(0, 48)">
-        <text x="0" y="10" class="text-base text-lang-name">TypeScript</text>
-        <rect x="120" y="2" width="500" height="8" class="progress-bg" />
-        <rect
-                  x="120"
-                  y="2"
-                  width="80.24516848653059"
-                  height="8"
-                  fill="#3178c6"
-                  class="progress-bar"
-              />
-        <text
-                  x="640"
-                  y="10"
-                  class="text-base text-lang-percent"
-              >16.0%</text>
-      </g>
-      <g transform="translate(0, 76)">
-        <text x="0" y="10" class="text-base text-lang-name">Dart</text>
-        <rect x="120" y="2" width="500" height="8" class="progress-bg" />
-        <rect
-                  x="120"
-                  y="2"
-                  width="69.49714079310077"
-                  height="8"
-                  fill="#00B4AB"
-                  class="progress-bar"
-              />
-        <text
-                  x="640"
-                  y="10"
-                  class="text-base text-lang-percent"
-              >13.9%</text>
-      </g>
-      <g transform="translate(0, 104)">
-        <text x="0" y="10" class="text-base text-lang-name">HTML</text>
-        <rect x="120" y="2" width="500" height="8" class="progress-bg" />
-        <rect
-                  x="120"
-                  y="2"
-                  width="43.66830004735271"
-                  height="8"
-                  fill="#e34c26"
-                  class="progress-bar"
-              />
-        <text
-                  x="640"
-                  y="10"
-                  class="text-base text-lang-percent"
-              >8.7%</text>
-      </g>
-      <g transform="translate(0, 132)">
-        <text x="0" y="10" class="text-base text-lang-name">C++</text>
-        <rect x="120" y="2" width="500" height="8" class="progress-bg" />
-        <rect
-                  x="120"
-                  y="2"
-                  width="8.499159061564772"
-                  height="8"
-                  fill="#f34b7d"
-                  class="progress-bar"
-              />
-        <text
-                  x="640"
-                  y="10"
-                  class="text-base text-lang-percent"
-              >1.7%</text>
+    <!-- Masteries Section -->
+    <g transform="translate(0, 230)">
+      <line x1="0" y1="0" x2="680" y2="0" class="separator" />
+      <text x="0" y="30" class="text-sans stat-label" style="opacity: 0.7;">Top Masteries</text>
+      
+      <g transform="translate(0, 50)">
+        <g transform="translate(0, 0)" class="animate-fade" style="animation-delay: 0.5s">
+          <text x="0" y="4" class="text-sans lang-name">JavaScript</text>
+          <text x="300" y="4" class="text-sans lang-percent">52.4%</text>
+          
+          <!-- Modern Thin Progress Bar -->
+          <rect x="0" y="12" width="300" height="4" fill="#21262d" rx="2" />
+          <rect x="0" y="12" width="157.29392750728718" height="4" fill="#f1e05a" rx="2">
+            <animate attributeName="width" from="0" to="157.29392750728718" dur="1s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" />
+          </rect>
+        </g>
+        <g transform="translate(350, 0)" class="animate-fade" style="animation-delay: 0.6s">
+          <text x="0" y="4" class="text-sans lang-name">TypeScript</text>
+          <text x="300" y="4" class="text-sans lang-percent">16.0%</text>
+          
+          <!-- Modern Thin Progress Bar -->
+          <rect x="0" y="12" width="300" height="4" fill="#21262d" rx="2" />
+          <rect x="0" y="12" width="48.14710109191836" height="4" fill="#3178c6" rx="2">
+            <animate attributeName="width" from="0" to="48.14710109191836" dur="1s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" />
+          </rect>
+        </g>
+        <g transform="translate(0, 40)" class="animate-fade" style="animation-delay: 0.7s">
+          <text x="0" y="4" class="text-sans lang-name">Dart</text>
+          <text x="300" y="4" class="text-sans lang-percent">13.9%</text>
+          
+          <!-- Modern Thin Progress Bar -->
+          <rect x="0" y="12" width="300" height="4" fill="#21262d" rx="2" />
+          <rect x="0" y="12" width="41.69828447586046" height="4" fill="#00B4AB" rx="2">
+            <animate attributeName="width" from="0" to="41.69828447586046" dur="1s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" />
+          </rect>
+        </g>
+        <g transform="translate(350, 40)" class="animate-fade" style="animation-delay: 0.8s">
+          <text x="0" y="4" class="text-sans lang-name">HTML</text>
+          <text x="300" y="4" class="text-sans lang-percent">8.7%</text>
+          
+          <!-- Modern Thin Progress Bar -->
+          <rect x="0" y="12" width="300" height="4" fill="#21262d" rx="2" />
+          <rect x="0" y="12" width="26.200980028411628" height="4" fill="#e34c26" rx="2">
+            <animate attributeName="width" from="0" to="26.200980028411628" dur="1s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1" />
+          </rect>
+        </g>
       </g>
     </g>
   </g>
-
-  <g transform="translate(780, 460)" class="animate-fade-in delay-3">
-    <text
-            text-anchor="end"
-            class="text-base text-subtitle"
-            style="font-size: 10px;"
-        >Kelvin Klein - 2026</text>
-  </g>
+  
+  <!-- Footer Brand -->
+  <text x="760" y="370" text-anchor="end" class="text-sans text-handle" style="font-size: 10px; opacity: 0.3;">
+    ANTIGRAVITY // Kelvin Klein
+  </text>
 </svg>
