@@ -20,7 +20,7 @@
 
     .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
     .animate-slide-up { animation: slideUp 0.8s ease-out forwards; opacity: 0; }
-    
+
     .delay-1 { animation-delay: 0.2s; }
     .delay-2 { animation-delay: 0.4s; }
     .delay-3 { animation-delay: 0.6s; }
@@ -28,21 +28,21 @@
     /* --- Components --- */
     .card-bg { fill: #0d1117; rx: 10px; }
     .card-border { stroke: #30363d; stroke-width: 1; rx: 10px; fill: none; }
-    
+
     .stat-box { fill: #161b22; rx: 6px; }
     .stat-box-border { stroke: #30363d; stroke-width: 1; rx: 6px; fill: none; }
 
     .progress-bg { fill: #21262d; rx: 4px; }
-    .progress-bar { 
-        rx: 4px; 
+    .progress-bar {
+        rx: 4px;
         transform-origin: left; /* Necessário para scaleX funcionar corretamente */
-        animation: fillBar 1s ease-out forwards; 
+        animation: fillBar 1s ease-out forwards;
     }
   </style>
 
   <!-- Background -->
   <rect width="800" height="400" class="card-bg" />
-  
+
   <!-- Grid Pattern com ID ÚNICO para evitar colisão -->
   <defs>
     <pattern id="grid-{{ username }}" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -60,8 +60,12 @@
   <g transform="translate(40, 40)" class="animate-fade-in">
     <!-- Fallback & Avatar -->
     <circle cx="40" cy="40" r="42" fill="#30363d" />
-    <image href="{{ avatar }}" x="0" y="0" width="80" height="80" clip-path="url(#avatar-clip-{{ username }})" role="presentation" />
-    
+    <g clip-path="url(#avatar-clip-{{ username }})" role="presentation">
+      <rect x="0" y="0" width="80" height="80" fill="#21262d" />
+      <circle cx="40" cy="30" r="14" fill="#8b949e" />
+      <path d="M12 78 C16 58, 28 50, 40 50 C52 50, 64 58, 68 78 Z" fill="#8b949e" />
+    </g>
+
     <!-- Meta info -->
     <text x="100" y="35" class="text-base text-title">{{ name }}</text>
     <text x="100" y="60" class="text-base text-subtitle">@{{ username }} • Level {{ (total_contributions // 100) + 1 }} Artificer</text>
@@ -105,16 +109,16 @@
   <!-- Languages Section -->
   <g transform="translate(40, 260)" class="animate-slide-up delay-2">
     <text x="0" y="0" class="text-base text-stat-label" style="font-size: 14px; fill: #ffffff;">Top Masteries</text>
-    
+
     {% for lang in top_languages %}
     <g transform="translate(0, {{ loop.index0 * 28 + 20 }})">
       <text x="0" y="10" class="text-base text-lang-name">{{ lang.name }}</text>
       <rect x="120" y="2" width="500" height="8" class="progress-bg" />
-      
+
       <!-- PERFORMANCE: Largura controlada via style inline no elemento para ser o "alvo" do scaleX -->
       <!-- O scaleX vai de 0 a 1 na animação, então a largura base deve ser a largura final desejada -->
       <rect x="120" y="2" width="{{ lang.percentage * 5 }}" height="8" fill="{{ lang.color }}" class="progress-bar" />
-      
+
       <text x="640" y="10" class="text-base text-lang-percent">{{ "%.1f"|format(lang.percentage) }}%</text>
     </g>
     {% endfor %}

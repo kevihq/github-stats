@@ -1,7 +1,6 @@
 import json
 import os
 import sys
-import base64
 from collections import defaultdict
 from typing import Any, Dict, List
 
@@ -17,21 +16,6 @@ class GitHubAPIError(Exception):
     """Custom exception for GitHub API failures."""
 
     pass
-
-
-def image_to_base64(url: str) -> str:
-    """Downloads an image and converts it to base64 string."""
-    if not url:
-        return ""
-    try:
-        response = requests.get(url, timeout=10)
-        response.raise_for_status()
-        encoded = base64.b64encode(response.content).decode("utf-8")
-        content_type = response.headers.get("content-type", "image/png")
-        return f"data:{content_type};base64,{encoded}"
-    except Exception as e:
-        print(f"⚠️ Failed to convert avatar to base64: {e}")
-        return url  # Fallback to original URL if conversion fails
 
 
 def execute_graphql_query(
@@ -70,7 +54,7 @@ def fetch_user_metrics() -> Dict[str, Any]:
       viewer {
         login
         name
-        avatarUrl
+
         repositories(first: 100, ownerAffiliations: OWNER, isFork: false, orderBy: {field: STARGAZERS, direction: DESC}) {
           nodes {
             name
@@ -127,13 +111,9 @@ def fetch_user_metrics() -> Dict[str, Any]:
             }
         )
 
-    # Convert avatar to base64 for self-contained SVG
-    avatar_b64 = image_to_base64(viewer["avatarUrl"])
-
     return {
         "username": viewer["login"],
         "name": viewer["name"] or viewer["login"],
-        "avatar": avatar_b64,
         "total_stars": total_stars,
         "total_commits": contributions["totalCommitContributions"],
         "total_prs": contributions["totalPullRequestContributions"],

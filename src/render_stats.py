@@ -35,6 +35,10 @@ class FileWriteError(RenderError):
     """Raised when output file cannot be written."""
 
 
+class SVGValidationError(RenderError):
+    """Raised when generated SVG contains unsafe or unsupported markup."""
+
+
 def load_json_data(json_path: Path) -> dict[str, Any]:
     """Load and validate JSON data from file.
 
@@ -119,6 +123,22 @@ def write_output(output_path: Path, content: str) -> None:
         raise FileWriteError(f"Cannot write to {output_path}: {e}") from e
 
 
+def validate_svg_content(svg_content: str) -> None:
+    """Validate generated SVG content for GitHub-safe rendering.
+
+    Args:
+        svg_content: Generated SVG content
+
+    Raises:
+        SVGValidationError: If unsupported tags are found
+    """
+    if "<image" in svg_content.lower():
+        raise SVGValidationError(
+            "Generated SVG contains <image> tags, which can break GitHub rendering. "
+            "Use pure SVG shapes instead."
+        )
+
+
 def render_svg(
     json_file: str | Path = "stats.json",
     output_file: str | Path = "stats.svg",
@@ -145,6 +165,9 @@ def render_svg(
 
     logger.info(f"Rendering template '{template_name}'")
     svg_content = render_template(templates_path, template_name, data)
+
+    logger.info("Validating generated SVG content")
+    validate_svg_content(svg_content)
 
     logger.info(f"Writing output to {output_path}")
     write_output(output_path, svg_content)
