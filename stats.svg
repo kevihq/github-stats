@@ -10,7 +10,7 @@
   <title id="titleId-kevihq">GitHub Stats for Kelvin Klein</title>
   <desc
         id="descId-kevihq"
-    >Stats for kevihq: Level 7 Artificer, 606 XP, 521 commits.</desc>
+    >Stats for kevihq: Level 7 Artificer, 604 XP, 520 commits.</desc>
 
   <style>
     .text-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -133,7 +133,7 @@
                         x="36"
                         y="20"
                         class="text-sans stat-value"
-                    >606</text>
+                    >604</text>
           <text x="36" y="40" class="text-sans stat-label">Total XP</text>
         </g>
       </g>
@@ -153,7 +153,7 @@
                         x="36"
                         y="20"
                         class="text-sans stat-value"
-                    >521</text>
+                    >520</text>
           <text x="36" y="40" class="text-sans stat-label">Commits</text>
         </g>
       </g>
