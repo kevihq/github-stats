@@ -2,35 +2,35 @@
   "username": "kevihq",
   "name": "Kelvin Klein",
   "total_stars": 0,
-  "total_commits": 516,
+  "total_commits": 537,
   "total_prs": 21,
   "total_issues": 0,
-  "total_contributions": 594,
+  "total_contributions": 616,
   "top_languages": [
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "percentage": 61.39151838599496
+      "percentage": 58.21845885573522
     },
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "percentage": 17.705369436257893
+      "percentage": 16.7902561974346
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "percentage": 9.207029466204036
+      "percentage": 8.73115831394751
+    },
+    {
+      "name": "C#",
+      "color": "#178600",
+      "percentage": 5.91415158633766
     },
     {
       "name": "Java",
       "color": "#b07219",
-      "percentage": 2.2856677590603462
-    },
-    {
-      "name": "CSS",
-      "color": "#663399",
-      "percentage": 1.6365911118237957
+      "percentage": 2.167531572555007
     }
   ]
 }
